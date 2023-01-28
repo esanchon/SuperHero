@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 public class MarvelHero implements Parcelable {
 
+    private int id;
     private String name;
     private String photo;
     private String realName;
@@ -16,6 +17,7 @@ public class MarvelHero implements Parcelable {
     private String groups;
 
     private MarvelHero(@NonNull MarvelHero builder) {
+        this.id = builder.id;
         this.name = builder.name;
         this.photo = builder.photo;
         this.realName = builder.realName;
@@ -30,6 +32,7 @@ public class MarvelHero implements Parcelable {
     }
 
     protected MarvelHero(Parcel in) {
+        id = in.readInt();
         name = in.readString();
         photo = in.readString();
         realName = in.readString();
@@ -58,6 +61,7 @@ public class MarvelHero implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(photo);
         dest.writeString(realName);
@@ -67,6 +71,13 @@ public class MarvelHero implements Parcelable {
         dest.writeString(groups);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

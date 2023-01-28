@@ -38,13 +38,14 @@ public class MarvelHereoRemoteDataSource {
                 List<Map> remoteHeroes = (List)jsonResponse.get("results");
                 for (Map hero : remoteHeroes) {
                     MarvelHero marvelHero = new MarvelHero();
+                    marvelHero.setId(Integer.parseInt((String)hero.get("id")));
                     marvelHero.setName((String)hero.get("name"));
                     marvelHero.setRealName((String)((Map)hero.get("biography")).get("full-name"));
                     marvelHero.setPhoto((String)((Map)hero.get("image")).get("url"));
                     marvelHero.setGender((String)((Map)hero.get("appearance")).get("gender"));
                     marvelHero.setPower((String)((Map)hero.get("powerstats")).get("power"));
                     marvelHero.setIntelligence((String)((Map)hero.get("powerstats")).get("intelligence"));
-                    marvelHero.setIntelligence((String)((Map)hero.get("connections")).get("group-affiliation"));
+                    marvelHero.setGroups((String)((Map)hero.get("connections")).get("group-affiliation"));
                     marvelHeroes.add(marvelHero);
                 }
             } else {

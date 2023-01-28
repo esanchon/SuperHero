@@ -3,6 +3,7 @@ package com.superheroes.app.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.superheroes.app.R;
+import com.superheroes.app.datasource.AppDatabase;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.presenter.ListHeroesPresenter;
 import com.superheroes.app.presenter.ListHeroesViewTranslator;
@@ -37,7 +39,6 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
         mEmptyText = findViewById(R.id.tv_empty_list);
         mLoader = (ProgressBar) findViewById(R.id.pb_loader);
         mLoader.setIndeterminate(true);
-
 
         //review recreation of the presenter
         presenter = new ListHeroesPresenter(this);

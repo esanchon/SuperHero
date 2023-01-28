@@ -24,7 +24,9 @@ public class ListHeroesPresenter  {
 
     public void initialize() {
         mView.showProgress();
-        mTaskRunner.executeAsync(new DownloadHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource())), (result) -> {
+        DownloadHeroesUseCase useCase = new DownloadHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
+        useCase.setSourceType(true);
+        mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
                 mView.loadData(result.data());
