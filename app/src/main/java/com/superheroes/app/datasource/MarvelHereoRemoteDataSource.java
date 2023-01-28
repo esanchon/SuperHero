@@ -47,9 +47,13 @@ public class MarvelHereoRemoteDataSource {
                     marvelHero.setIntelligence((String)((Map)hero.get("connections")).get("group-affiliation"));
                     marvelHeroes.add(marvelHero);
                 }
+            } else {
+                return marvelHeroes;
             }
         } catch (JsonSyntaxException parseException) {
             throw parseException;
+        } catch (Exception e) {
+            throw e;
         }
 
         return marvelHeroes;

@@ -1,7 +1,10 @@
 package com.superheroes.app.presenter;
 
 
+import android.content.Context;
+
 import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
+import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
@@ -29,6 +32,9 @@ public class ListHeroesPresenter  {
                 mView.showError("No se puedo cargar la lista");
             }
         });
+    }
 
+    public void onMarvelHeroClick(Context context, MarvelHero marvelHero) {
+        //TODO open detail activity
     }
 }
