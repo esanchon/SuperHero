@@ -19,25 +19,21 @@ public class ListHeroesPresenter  {
 
     private MarvelHero currentHeroSelected;
 
-    public ListHeroesPresenter(ListHeroesViewTranslator view) {
+    public ListHeroesPresenter(ListHeroesViewTranslator view, Boolean isFirstTime) {
         mView = view;
         mView.showProgress();
 
-        initialize(true);
+        downloadData(!isFirstTime);
     }
 
-    public void initialize(Boolean isLocal) {
+    public void downloadData(Boolean isLocal) {
         mView.showProgress();
         DownloadHeroesUseCase useCase = new DownloadHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
         useCase.setSourceType(isLocal);
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
-                if(result.data().isEmpty()){
-                  initialize(false);
-                } else {
-                    mView.loadData(result.data());
-                }
+                mView.loadData(result.data());
             } else {
                 mView.showError("No se puedo cargar la lista");
             }
@@ -47,7 +43,7 @@ public class ListHeroesPresenter  {
 
     public void onResume() {
         if(currentHeroSelected != null) {
-            initialize(true);
+            downloadData(true);
             currentHeroSelected = null;
         }
     }
@@ -63,5 +59,9 @@ public class ListHeroesPresenter  {
 
     public void onMenuClicked(Context context, Boolean isUpdate) {
         EditHeroesActivity.start(context, currentHeroSelected, isUpdate);
+    }
+
+    public void onMenuUpdateClicked() {
+        downloadData(false);
     }
 }

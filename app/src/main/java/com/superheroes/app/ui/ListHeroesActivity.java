@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -45,7 +47,11 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
         mLoader.setIndeterminate(true);
 
         //review recreation of the presenter
-        presenter = new ListHeroesPresenter(this);
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        presenter = new ListHeroesPresenter(this, preferences.getBoolean("isFirstTime", true));
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isFirstTime", false);
+        editor.commit();
 
         mAdapter = new HeroesAdapter(presenter);
         mRecyclerView.setAdapter(mAdapter);
@@ -55,6 +61,27 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
     protected void onResume() {
         super.onResume();
         presenter.onResume();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.update_content:
+                presenter.onMenuUpdateClicked();
+                break;
+            case R.id.about_content:
+                Toast.makeText(this, "Clicked Menu 2", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

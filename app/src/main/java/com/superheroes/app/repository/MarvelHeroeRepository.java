@@ -33,6 +33,7 @@ public class MarvelHeroeRepository {
                 response = marvelHereoLocalDataSource.getAllHereoes();
             } else {
                 response = marvelHereoRemoteDataSource.getAllHereoes();
+                marvelHereoLocalDataSource.clearHeroes();
                 marvelHereoLocalDataSource.saveHeroes(response);
             }
             //if islocal maybe new status to inform OK_LOCAL or OK_REMOTE

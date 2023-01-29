@@ -99,4 +99,11 @@ public class MarvelHeroeLocalDataSource {
         }
     }
 
+    public void clearHeroes() {
+        try {
+            HeroesDao heroesDao = db.heroesDao();
+            heroesDao.deleteAll();
+        } catch (Exception e) {
+        }
+    }
 }

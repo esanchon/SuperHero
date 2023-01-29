@@ -2,6 +2,7 @@ package com.superheroes.app.datasource;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.DeleteTable;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -23,4 +24,6 @@ public interface HeroesDao {
     @Update
     void update(MarvelHeroDatabase heroe);
 
+    @Query("DELETE FROM marvelherodatabase")
+    void deleteAll();
 }
