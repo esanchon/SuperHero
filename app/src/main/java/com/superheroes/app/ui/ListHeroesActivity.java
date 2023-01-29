@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.superheroes.app.R;
 import com.superheroes.app.datasource.AppDatabase;
@@ -48,6 +52,12 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
     public void showProgress() {
 
     }
@@ -69,5 +79,19 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
         mRecyclerView.setVisibility(View.GONE);
         mEmptyText.setVisibility(View.VISIBLE);
         mEmptyText.setText(message);
+    }
+
+    @Override
+    public void openEditDialog(View v) {
+        PopupMenu popup = new PopupMenu(getApplicationContext(), v.findViewById(R.id.tv_hero_name));
+        popup.getMenuInflater().inflate(R.menu.pop_up, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                presenter.onMenuClicked(getApplicationContext(),R.id.add== item.getItemId());
+                return true;
+            }
+        });
+        popup.show();//showing popup menu// show popup like dropdown list
     }
 }

@@ -47,6 +47,17 @@ public class MarvelHeroeRepository {
     //method remove
 
     //method update
+    @NonNull
+    public Result<Boolean> editHero(MarvelHero hero) throws Exception {
 
+        try {
+            Boolean response = marvelHereoLocalDataSource.editHero(hero);
+            return new Result<>(Result.Status.OK, response);
+        } catch (IOException exception) {
+            return new Result<>(Result.Status.ERROR, false);
+        } catch (Exception exception) {
+            return new Result<>(Result.Status.ERROR, false);
+        }
+    }
 
 }

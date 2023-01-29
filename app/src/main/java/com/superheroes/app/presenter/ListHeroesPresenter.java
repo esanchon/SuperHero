@@ -2,6 +2,7 @@ package com.superheroes.app.presenter;
 
 
 import android.content.Context;
+import android.view.View;
 
 import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
@@ -9,11 +10,14 @@ import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
 import com.superheroes.app.repository.MarvelHeroeRepository;
+import com.superheroes.app.ui.EditHeroesActivity;
 
 public class ListHeroesPresenter  {
 
     private ListHeroesViewTranslator mView;
     private TaskRunner mTaskRunner = new TaskRunner();
+
+    private MarvelHero currentHeroSelected;
 
     public ListHeroesPresenter(ListHeroesViewTranslator view) {
         mView = view;
@@ -36,7 +40,24 @@ public class ListHeroesPresenter  {
         });
     }
 
+
+    public void onResume() {
+        if(currentHeroSelected != null) {
+            initialize();
+            currentHeroSelected = null;
+        }
+    }
+
     public void onMarvelHeroClick(Context context, MarvelHero marvelHero) {
         //TODO open detail activity
+    }
+
+    public void onMarvelHeroLongClick(View v, MarvelHero marvelHero) {
+        currentHeroSelected = marvelHero;
+        mView.openEditDialog(v);
+    }
+
+    public void onMenuClicked(Context context, Boolean isUpdate) {
+        EditHeroesActivity.start(context, currentHeroSelected, isUpdate);
     }
 }

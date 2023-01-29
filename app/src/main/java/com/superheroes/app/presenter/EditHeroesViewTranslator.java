@@ -6,15 +6,11 @@ import com.superheroes.app.domain.models.MarvelHero;
 
 import java.util.List;
 
-public interface ListHeroesViewTranslator {
+public interface EditHeroesViewTranslator {
 
     void showProgress();
 
     void hideProgress();
 
-    void loadData(List<MarvelHero> heroList);
-
-    void showError(String message);
-
-    void openEditDialog(View v);
+    void notifyChanges(String message);
 }

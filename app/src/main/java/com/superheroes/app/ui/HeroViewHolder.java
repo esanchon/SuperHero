@@ -47,6 +47,14 @@ public class HeroViewHolder extends RecyclerView.ViewHolder {
                 presenter.onMarvelHeroClick(getContext(), marvelHero);
             }
         });
+
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                presenter.onMarvelHeroLongClick(v, marvelHero);
+                return true;
+            }
+        });
     }
 
     private Context getContext() {

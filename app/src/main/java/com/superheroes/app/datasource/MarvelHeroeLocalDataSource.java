@@ -57,5 +57,25 @@ public class MarvelHeroeLocalDataSource {
         }
 
         //update
-     //remove
+        public Boolean editHero(MarvelHero hero) throws Exception {
+              HeroesDao heroesDao = db.heroesDao();
+
+             try {
+                 MarvelHeroDatabase marvelHeroDatabase = new MarvelHeroDatabase();
+                 marvelHeroDatabase.setId(hero.getId());
+                 marvelHeroDatabase.setName(hero.getName());
+                 marvelHeroDatabase.setRealName(hero.getRealName());
+                 marvelHeroDatabase.setPhoto(hero.getPhoto());
+                 marvelHeroDatabase.setGender(hero.getGender());
+                 marvelHeroDatabase.setPower(hero.getPower());
+                 marvelHeroDatabase.setIntelligence(hero.getIntelligence());
+                 marvelHeroDatabase.setGroups(hero.getIntelligence());
+
+                 heroesDao.update(marvelHeroDatabase);
+                 return true;
+             } catch (Exception e) {
+                 return false;
+             }
+        }
+       //remove
 }
