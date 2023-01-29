@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
+import com.superheroes.app.domain.usecases.DeleteHeroesUseCase;
 import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.EditHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
@@ -29,7 +30,17 @@ public class EditHeroesPresenter {
     }
 
     public void onDelete(MarvelHero marvelHero) {
-        //TODO delete hero
+        mView.showProgress();
+        DeleteHeroesUseCase useCase = new DeleteHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
+        useCase.setHero(marvelHero);
+        mTaskRunner.executeAsync(useCase, (result) -> {
+            mView.hideProgress();
+            if (result.status() == Result.Status.OK) {
+                mView.notifyChanges("Borrado correctamente");
+            } else {
+                mView.notifyChanges("No se pudo borrar el heroe");
+            }
+        });
     }
 
     public void onUpdate(MarvelHero marvelHero) {
@@ -41,7 +52,7 @@ public class EditHeroesPresenter {
             if (result.status() == Result.Status.OK) {
                 mView.notifyChanges("Modificado correctamente");
             } else {
-                mView.notifyChanges("No se puedo modificar el heroe");
+                mView.notifyChanges("No se pudo modificar el heroe");
             }
         });
     }

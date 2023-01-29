@@ -22,4 +22,5 @@ public interface HeroesDao {
 
     @Update
     void update(MarvelHeroDatabase heroe);
+
 }

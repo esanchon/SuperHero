@@ -77,5 +77,26 @@ public class MarvelHeroeLocalDataSource {
                  return false;
              }
         }
-       //remove
+
+    public Boolean deleteHero(MarvelHero hero) {
+        HeroesDao heroesDao = db.heroesDao();
+
+        try {
+            MarvelHeroDatabase marvelHeroDatabase = new MarvelHeroDatabase();
+            marvelHeroDatabase.setId(hero.getId());
+            marvelHeroDatabase.setName(hero.getName());
+            marvelHeroDatabase.setRealName(hero.getRealName());
+            marvelHeroDatabase.setPhoto(hero.getPhoto());
+            marvelHeroDatabase.setGender(hero.getGender());
+            marvelHeroDatabase.setPower(hero.getPower());
+            marvelHeroDatabase.setIntelligence(hero.getIntelligence());
+            marvelHeroDatabase.setGroups(hero.getIntelligence());
+
+            heroesDao.delete(marvelHeroDatabase);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

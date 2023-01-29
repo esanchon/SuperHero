@@ -60,4 +60,14 @@ public class MarvelHeroeRepository {
         }
     }
 
+    public Result<Boolean> deleteHero(MarvelHero hero) {
+
+
+        try {
+            Boolean response = marvelHereoLocalDataSource.deleteHero(hero);
+            return new Result<>(Result.Status.OK, response);
+        } catch (Exception exception) {
+            return new Result<>(Result.Status.ERROR, false);
+        }
+    }
 }

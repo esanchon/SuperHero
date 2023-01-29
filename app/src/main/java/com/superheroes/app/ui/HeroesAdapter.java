@@ -27,6 +27,7 @@ public class HeroesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void addAll(List<MarvelHero> heroes) {
+        superHeroes.clear();
         superHeroes.addAll(heroes);
     }
 
