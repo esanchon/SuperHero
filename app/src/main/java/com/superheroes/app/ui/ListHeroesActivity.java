@@ -76,7 +76,7 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
                 presenter.onMenuUpdateClicked();
                 break;
             case R.id.about_content:
-                Toast.makeText(this, "Clicked Menu 2", Toast.LENGTH_SHORT).show();
+                presenter.onMenuAboutClicked(getApplicationContext());
                 break;
             default:
                 break;

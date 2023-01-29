@@ -11,6 +11,9 @@ import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
 import com.superheroes.app.repository.MarvelHeroeRepository;
 import com.superheroes.app.ui.EditHeroesActivity;
+import com.superheroes.app.ui.ListLicenseActivity;
+
+import java.util.List;
 
 public class ListHeroesPresenter  {
 
@@ -63,5 +66,9 @@ public class ListHeroesPresenter  {
 
     public void onMenuUpdateClicked() {
         downloadData(false);
+    }
+
+    public void onMenuAboutClicked(Context context) {
+        ListLicenseActivity.start(context);
     }
 }
