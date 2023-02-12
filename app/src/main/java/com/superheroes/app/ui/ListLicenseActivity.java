@@ -49,7 +49,7 @@ public class ListLicenseActivity extends AppCompatActivity {
         mAdapter = new LicenseAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
-        getSupportActionBar().setTitle("Licencias");
+        getSupportActionBar().setTitle(getString(R.string.license));
     }
 
 }

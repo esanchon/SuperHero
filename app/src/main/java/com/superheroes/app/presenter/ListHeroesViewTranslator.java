@@ -14,7 +14,7 @@ public interface ListHeroesViewTranslator {
 
     void loadData(List<MarvelHero> heroList);
 
-    void showError(String message);
+    void showError(int message);
 
     void openEditDialog(View v);
 }

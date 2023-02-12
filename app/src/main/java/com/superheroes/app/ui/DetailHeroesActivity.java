@@ -63,7 +63,7 @@ public class DetailHeroesActivity extends AppCompatActivity{
 
         Glide.with(this).load(currentHeroSelected.getPhoto()).into(mImageView);
 
-        getSupportActionBar().setTitle("Detalle de Superheroe");
+        getSupportActionBar().setTitle(getString(R.string.detail));
 
 
 

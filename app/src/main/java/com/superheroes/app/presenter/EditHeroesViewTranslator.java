@@ -12,5 +12,5 @@ public interface EditHeroesViewTranslator {
 
     void hideProgress();
 
-    void notifyChanges(String message);
+    void notifyChanges(int message);
 }

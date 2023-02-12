@@ -101,10 +101,10 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
     }
 
     @Override
-    public void showError(String message) {
+    public void showError(int message) {
         mRecyclerView.setVisibility(View.GONE);
         mEmptyText.setVisibility(View.VISIBLE);
-        mEmptyText.setText(message);
+        mEmptyText.setText(getString(message));
     }
 
     @Override

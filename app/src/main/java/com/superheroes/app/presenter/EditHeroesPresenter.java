@@ -1,6 +1,7 @@
 package com.superheroes.app.presenter;
 
 
+import com.superheroes.app.R;
 import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DeleteHeroesUseCase;
@@ -32,9 +33,9 @@ public class EditHeroesPresenter {
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
-                mView.notifyChanges("Borrado correctamente");
+                mView.notifyChanges(R.string.remove_ok);
             } else {
-                mView.notifyChanges("No se pudo borrar el heroe");
+                mView.notifyChanges(R.string.remove_error);
             }
         });
     }
@@ -46,9 +47,9 @@ public class EditHeroesPresenter {
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
-                mView.notifyChanges("Modificado correctamente");
+                mView.notifyChanges(R.string.modify_ok);
             } else {
-                mView.notifyChanges("No se pudo modificar el heroe");
+                mView.notifyChanges(R.string.modify_error);
             }
         });
     }

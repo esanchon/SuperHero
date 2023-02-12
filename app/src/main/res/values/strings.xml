@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SuperHeroes</string>
+    <string name="error_download_data">No se pudo cargar la lista</string>
+    <string name="remove_ok">Borrado correctamente</string>
+    <string name="remove_error">No se pudo borrar el heroe"</string>
+    <string name="modify_ok">Modificado correctamente</string>
+    <string name="modify_error">No se pudo modificar el heroe"</string>
+    <string name="update">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="detail">"Detalle de Superheroe"</string>
+    <string name="license">Licencias</string>
 </resources>

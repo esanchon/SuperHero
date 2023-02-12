@@ -3,6 +3,7 @@ package com.superheroes.app.presenter;
 import android.content.Context;
 import android.view.View;
 
+import com.superheroes.app.R;
 import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
@@ -34,7 +35,7 @@ public class ListHeroesPresenter  {
             if (result.status() == Result.Status.OK) {
                 mView.loadData(result.data());
             } else {
-                mView.showError("No se pudo cargar la lista");
+                mView.showError(R.string.error_download_data);
             }
         });
     }

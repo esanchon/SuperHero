@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SuperHeroes</string>
+    <string name="error_download_data">Cannot load list</string>
+    <string name="remove_error">Cannot delete</string>
+    <string name="remove_ok">Deleted</string>
+    <string name="modify_ok">Updated</string>
+    <string name="modify_error">Cannot update</string>
+    <string name="update">Editar</string>
+    <string name="delete">Delete</string>
+    <string name="detail">Detail</string>
+    <string name="license">License</string>
+</resources>

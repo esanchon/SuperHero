@@ -67,7 +67,7 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
 
 
         btn_save = findViewById(R.id.btn_save);
-        btn_save.setText(isUpdate ? "Update" : "Remove");
+        btn_save.setText(isUpdate ? getString(R.string.update) : getString(R.string.delete));
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +82,7 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
         edit_name = findViewById(R.id.edit_name);
         edit_name.setText(currentHeroSelected.getName());
 
-        getSupportActionBar().setTitle(isUpdate ?"Editar" : "Borrar");
+        getSupportActionBar().setTitle(isUpdate ?getString(R.string.update) : getString(R.string.delete));
     }
 
     @Override
@@ -102,8 +102,8 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
     }
 
     @Override
-    public void notifyChanges(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void notifyChanges(int message) {
+        Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show();
         finish();
     }
 }
