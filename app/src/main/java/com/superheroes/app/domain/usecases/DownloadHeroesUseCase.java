@@ -1,15 +1,15 @@
 package com.superheroes.app.domain.usecases;
 import com.superheroes.app.domain.models.MarvelHero;
-import com.superheroes.app.repository.MarvelHeroeRepository;
+import com.superheroes.app.repository.MarvelHeroRepository;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 public class DownloadHeroesUseCase implements Callable<Result<List<MarvelHero>>> {
-        MarvelHeroeRepository marvelHeroeRepository;
+        MarvelHeroRepository marvelHeroRepository;
         Boolean isLocal = false;
 
-        public DownloadHeroesUseCase(MarvelHeroeRepository repository) {
-            marvelHeroeRepository = repository;
+        public DownloadHeroesUseCase(MarvelHeroRepository repository) {
+            marvelHeroRepository = repository;
         }
 
         public void setSourceType(Boolean isLocal) {
@@ -18,7 +18,7 @@ public class DownloadHeroesUseCase implements Callable<Result<List<MarvelHero>>>
 
         @Override
         public Result<List<MarvelHero>> call() throws Exception {
-            return marvelHeroeRepository.getAllHeroes(isLocal);
+            return marvelHeroRepository.getAllHeroes(isLocal);
         }
 }
 

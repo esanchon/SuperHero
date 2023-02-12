@@ -27,7 +27,6 @@ import java.util.List;
 public class ListHeroesActivity extends AppCompatActivity implements ListHeroesViewTranslator {
 
     private ListHeroesPresenter presenter;
-
     private RecyclerView mRecyclerView;
     private HeroesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -51,7 +50,7 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
         presenter = new ListHeroesPresenter(this, preferences.getBoolean("isFirstTime", true));
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("isFirstTime", false);
-        editor.commit();
+        editor.apply();
 
         mAdapter = new HeroesAdapter(presenter);
         mRecyclerView.setAdapter(mAdapter);

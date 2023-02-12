@@ -32,6 +32,11 @@
             android:parentActivityName=".ui.ListHeroesActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ui.DetailHeroesActivity"
+            android:parentActivityName=".ui.ListHeroesActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

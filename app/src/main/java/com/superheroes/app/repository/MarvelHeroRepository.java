@@ -2,7 +2,7 @@ package com.superheroes.app.repository;
 
 import androidx.annotation.NonNull;
 
-import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
+import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
 import com.superheroes.app.datasource.MarvelHeroeLocalDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.Result;
@@ -12,17 +12,17 @@ import java.util.List;
 
 
 
-public class MarvelHeroeRepository {
+public class MarvelHeroRepository {
 
     @NonNull
-    MarvelHereoRemoteDataSource marvelHereoRemoteDataSource;
+    MarvelHeroRemoteDataSource marvelHeroRemoteDataSource;
 
     @NonNull
-    MarvelHeroeLocalDataSource marvelHereoLocalDataSource;
+    MarvelHeroeLocalDataSource marvelHeroLocalDataSource;
 
-    public MarvelHeroeRepository(@NonNull MarvelHereoRemoteDataSource remoteDataSource) {
-        marvelHereoRemoteDataSource = remoteDataSource;
-        marvelHereoLocalDataSource = new MarvelHeroeLocalDataSource();
+    public MarvelHeroRepository(@NonNull MarvelHeroRemoteDataSource remoteDataSource) {
+        marvelHeroRemoteDataSource = remoteDataSource;
+        marvelHeroLocalDataSource = new MarvelHeroeLocalDataSource();
     }
 
     @NonNull
@@ -30,11 +30,11 @@ public class MarvelHeroeRepository {
         List<MarvelHero> response = null;
         try {
             if(isLocal){
-                response = marvelHereoLocalDataSource.getAllHereoes();
+                response = marvelHeroLocalDataSource.getAllHereoes();
             } else {
-                response = marvelHereoRemoteDataSource.getAllHereoes();
-                marvelHereoLocalDataSource.clearHeroes();
-                marvelHereoLocalDataSource.saveHeroes(response);
+                response = marvelHeroRemoteDataSource.getAllHereoes();
+                marvelHeroLocalDataSource.clearHeroes();
+                marvelHeroLocalDataSource.saveHeroes(response);
             }
             //if islocal maybe new status to inform OK_LOCAL or OK_REMOTE
             return new Result<>(Result.Status.OK, response);
@@ -52,7 +52,7 @@ public class MarvelHeroeRepository {
     public Result<Boolean> editHero(MarvelHero hero) throws Exception {
 
         try {
-            Boolean response = marvelHereoLocalDataSource.editHero(hero);
+            Boolean response = marvelHeroLocalDataSource.editHero(hero);
             return new Result<>(Result.Status.OK, response);
         } catch (IOException exception) {
             return new Result<>(Result.Status.ERROR, false);
@@ -65,7 +65,7 @@ public class MarvelHeroeRepository {
 
 
         try {
-            Boolean response = marvelHereoLocalDataSource.deleteHero(hero);
+            Boolean response = marvelHeroLocalDataSource.deleteHero(hero);
             return new Result<>(Result.Status.OK, response);
         } catch (Exception exception) {
             return new Result<>(Result.Status.ERROR, false);

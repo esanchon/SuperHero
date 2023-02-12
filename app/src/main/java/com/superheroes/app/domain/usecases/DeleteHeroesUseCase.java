@@ -1,16 +1,16 @@
 package com.superheroes.app.domain.usecases;
 
 import com.superheroes.app.domain.models.MarvelHero;
-import com.superheroes.app.repository.MarvelHeroeRepository;
+import com.superheroes.app.repository.MarvelHeroRepository;
 
 import java.util.concurrent.Callable;
 
 public class DeleteHeroesUseCase implements Callable<Result<Boolean>> {
-        MarvelHeroeRepository marvelHeroeRepository;
+        MarvelHeroRepository marvelHeroRepository;
         MarvelHero hero;
 
-        public DeleteHeroesUseCase(MarvelHeroeRepository repository) {
-            marvelHeroeRepository = repository;
+        public DeleteHeroesUseCase(MarvelHeroRepository repository) {
+            marvelHeroRepository = repository;
         }
 
         public void setHero(MarvelHero hero) {
@@ -19,7 +19,7 @@ public class DeleteHeroesUseCase implements Callable<Result<Boolean>> {
 
         @Override
         public Result<Boolean> call() throws Exception {
-            return marvelHeroeRepository.deleteHero(hero);
+            return marvelHeroRepository.deleteHero(hero);
         }
 }
 

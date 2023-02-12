@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.superheroes.app.domain.models.MarvelHero;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +13,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MarvelHereoRemoteDataSource {
+public class MarvelHeroRemoteDataSource {
 
     private String API_URL = "https://www.superheroapi.com/api.php/10160402389059699/search/super";
 
-    public MarvelHereoRemoteDataSource() {
+    public MarvelHeroRemoteDataSource() {
 
     }
 
@@ -46,6 +45,7 @@ public class MarvelHereoRemoteDataSource {
                     marvelHero.setPower((String)((Map)hero.get("powerstats")).get("power"));
                     marvelHero.setIntelligence((String)((Map)hero.get("powerstats")).get("intelligence"));
                     marvelHero.setGroups((String)((Map)hero.get("connections")).get("group-affiliation"));
+                    //marvelHero.setLatitude(new Double());
                     marvelHeroes.add(marvelHero);
                 }
             } else {

@@ -1,44 +1,40 @@
 package com.superheroes.app.presenter;
 
-
 import android.content.Context;
 import android.view.View;
 
-import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
+import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
-import com.superheroes.app.repository.MarvelHeroeRepository;
+import com.superheroes.app.repository.MarvelHeroRepository;
+import com.superheroes.app.ui.DetailHeroesActivity;
 import com.superheroes.app.ui.EditHeroesActivity;
 import com.superheroes.app.ui.ListLicenseActivity;
-
-import java.util.List;
 
 public class ListHeroesPresenter  {
 
     private ListHeroesViewTranslator mView;
     private TaskRunner mTaskRunner = new TaskRunner();
-
     private MarvelHero currentHeroSelected;
 
     public ListHeroesPresenter(ListHeroesViewTranslator view, Boolean isFirstTime) {
         mView = view;
         mView.showProgress();
-
         downloadData(!isFirstTime);
     }
 
     public void downloadData(Boolean isLocal) {
         mView.showProgress();
-        DownloadHeroesUseCase useCase = new DownloadHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
+        DownloadHeroesUseCase useCase = new DownloadHeroesUseCase(new MarvelHeroRepository(new MarvelHeroRemoteDataSource()));
         useCase.setSourceType(isLocal);
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
                 mView.loadData(result.data());
             } else {
-                mView.showError("No se puedo cargar la lista");
+                mView.showError("No se pudo cargar la lista");
             }
         });
     }
@@ -52,7 +48,8 @@ public class ListHeroesPresenter  {
     }
 
     public void onMarvelHeroClick(Context context, MarvelHero marvelHero) {
-        //TODO open detail activity
+        currentHeroSelected = marvelHero;
+        DetailHeroesActivity.start(context, marvelHero);
     }
 
     public void onMarvelHeroLongClick(View v, MarvelHero marvelHero) {

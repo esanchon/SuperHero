@@ -1,17 +1,13 @@
 package com.superheroes.app.presenter;
 
 
-import android.content.Context;
-import android.view.View;
-
-import com.superheroes.app.datasource.MarvelHereoRemoteDataSource;
+import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
 import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DeleteHeroesUseCase;
-import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.EditHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
-import com.superheroes.app.repository.MarvelHeroeRepository;
+import com.superheroes.app.repository.MarvelHeroRepository;
 
 public class EditHeroesPresenter {
 
@@ -31,7 +27,7 @@ public class EditHeroesPresenter {
 
     public void onDelete(MarvelHero marvelHero) {
         mView.showProgress();
-        DeleteHeroesUseCase useCase = new DeleteHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
+        DeleteHeroesUseCase useCase = new DeleteHeroesUseCase(new MarvelHeroRepository(new MarvelHeroRemoteDataSource()));
         useCase.setHero(marvelHero);
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
@@ -45,7 +41,7 @@ public class EditHeroesPresenter {
 
     public void onUpdate(MarvelHero marvelHero) {
         mView.showProgress();
-        EditHeroesUseCase useCase = new EditHeroesUseCase(new MarvelHeroeRepository(new MarvelHereoRemoteDataSource()));
+        EditHeroesUseCase useCase = new EditHeroesUseCase(new MarvelHeroRepository(new MarvelHeroRemoteDataSource()));
         useCase.setHero(marvelHero);
         mTaskRunner.executeAsync(useCase, (result) -> {
             mView.hideProgress();
