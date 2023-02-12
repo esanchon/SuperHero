@@ -2,10 +2,12 @@ package com.superheroes.app.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,11 +23,11 @@ public class DetailHeroesActivity extends AppCompatActivity{
     private ScrollView mscrollView;
     private ImageView mImageView;
 
-    private static MarvelHero currentHeroSelected;
+    private MarvelHero currentHeroSelected;
 
     public static void start(Context context, MarvelHero marvelHero) {
         Intent intent = new Intent(context, DetailHeroesActivity.class);
-        currentHeroSelected = marvelHero;
+        intent.putExtra("hero", marvelHero);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
@@ -33,6 +35,14 @@ public class DetailHeroesActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(savedInstanceState != null &&savedInstanceState.getParcelable("hero") != null){
+           currentHeroSelected = savedInstanceState.getParcelable("hero");
+        } else {
+            Bundle extras = getIntent().getExtras();
+            currentHeroSelected = extras.getParcelable("hero");
+        }
+
         setContentView(R.layout.activity_detail_hero);
 
         mscrollView = findViewById(R.id.sv_hero);
@@ -57,6 +67,12 @@ public class DetailHeroesActivity extends AppCompatActivity{
 
 
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable("hero", currentHeroSelected);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
 }

@@ -30,7 +30,7 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
 
     private EditHeroesPresenter presenter;
     private static Boolean isUpdate = false;
-    private static MarvelHero currentHeroSelected;
+    private  MarvelHero currentHeroSelected;
     private EditText edit_name;
     private Button btn_save;
 
@@ -40,7 +40,7 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
     public static void start(Context context, MarvelHero marvelHero, boolean isUpdateScreen){
         Intent intent = new Intent(context, EditHeroesActivity.class);
         isUpdate = isUpdateScreen;
-        currentHeroSelected = marvelHero;
+        intent.putExtra("hero", marvelHero);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
@@ -48,6 +48,15 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(savedInstanceState != null &&savedInstanceState.getParcelable("hero") != null){
+            currentHeroSelected = savedInstanceState.getParcelable("hero");
+        } else {
+            Bundle extras = getIntent().getExtras();
+            currentHeroSelected = extras.getParcelable("hero");
+        }
+
+
         setContentView(R.layout.activity_edit_heroes);
 
         mLoader = (ProgressBar) findViewById(R.id.pb_loader);
@@ -74,6 +83,12 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
         edit_name.setText(currentHeroSelected.getName());
 
         getSupportActionBar().setTitle(isUpdate ?"Editar" : "Borrar");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable("hero", currentHeroSelected);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
