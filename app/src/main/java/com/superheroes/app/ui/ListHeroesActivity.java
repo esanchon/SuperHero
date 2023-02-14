@@ -77,6 +77,12 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
             case R.id.about_content:
                 presenter.onMenuAboutClicked(getApplicationContext());
                 break;
+            case R.id.location_content:
+                presenter.onMenuMapsClicked(getApplicationContext());
+                break;
+
+
+
             default:
                 break;
         }

@@ -15,6 +15,8 @@ public class MarvelHero implements Parcelable {
     private String power;
     private String intelligence;
     private String groups;
+    private double latitude;
+    private double longitude;
 
     private MarvelHero(@NonNull MarvelHero builder) {
         this.id = builder.id;
@@ -25,6 +27,8 @@ public class MarvelHero implements Parcelable {
         this.power = builder.power;
         this.intelligence = builder.intelligence;
         this.groups = builder.groups;
+        this.latitude = builder.latitude;
+        this.longitude = builder.longitude;
     }
 
     public MarvelHero() {
@@ -40,6 +44,8 @@ public class MarvelHero implements Parcelable {
         power = in.readString();
         intelligence = in.readString();
         groups = in.readString();
+        latitude = in.readDouble();
+        latitude = in.readDouble();
     }
 
     public static final Creator<MarvelHero> CREATOR = new Creator<MarvelHero>() {
@@ -69,6 +75,8 @@ public class MarvelHero implements Parcelable {
         dest.writeString(power);
         dest.writeString(intelligence);
         dest.writeString(groups);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
     }
 
     public int getId() {
@@ -134,5 +142,19 @@ public class MarvelHero implements Parcelable {
         this.groups = groups;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 }

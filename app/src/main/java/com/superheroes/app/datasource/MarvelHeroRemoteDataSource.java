@@ -14,8 +14,12 @@ import okhttp3.Response;
 
 
 public class MarvelHeroRemoteDataSource {
+   private String API_URL = "https://www.superheroapi.com/api.php/10160402389059699/search/super";
 
-    private String API_URL = "https://www.superheroapi.com/api.php/10160402389059699/search/super";
+    private static final double MIN_LATITUDE = 37.3;
+    private static final double MAX_LATITUDE = 43.4;
+    private static final double MIN_LONGITUDE = -9;
+    private static final double MAX_LONGITUDE = 0;
 
     public MarvelHeroRemoteDataSource() {
 
@@ -45,7 +49,8 @@ public class MarvelHeroRemoteDataSource {
                     marvelHero.setPower((String)((Map)hero.get("powerstats")).get("power"));
                     marvelHero.setIntelligence((String)((Map)hero.get("powerstats")).get("intelligence"));
                     marvelHero.setGroups((String)((Map)hero.get("connections")).get("group-affiliation"));
-                    //marvelHero.setLatitude(new Double());
+                    marvelHero.setLatitude(MIN_LATITUDE + (Math.random() * (MAX_LATITUDE - MIN_LATITUDE)));
+                    marvelHero.setLongitude(MIN_LONGITUDE + (Math.random() * (MAX_LONGITUDE - MIN_LONGITUDE)));
                     marvelHeroes.add(marvelHero);
                 }
             } else {

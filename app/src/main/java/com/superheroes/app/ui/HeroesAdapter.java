@@ -40,7 +40,7 @@ public class HeroesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        Log.v("Position", String.valueOf(position));
+        //Log.v("Position", String.valueOf(position));
         HeroViewHolder superHeroViewHolder = (HeroViewHolder) holder;
         MarvelHero superHero = superHeroes.get(position);
         superHeroViewHolder.render(superHero);

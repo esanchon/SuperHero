@@ -30,7 +30,7 @@ public class MarvelHeroRepository {
         List<MarvelHero> response = null;
         try {
             if(isLocal){
-                response = marvelHeroLocalDataSource.getAllHereoes();
+                response = marvelHeroLocalDataSource.getAllHeroes();
             } else {
                 response = marvelHeroRemoteDataSource.getAllHereoes();
                 marvelHeroLocalDataSource.clearHeroes();
@@ -44,8 +44,6 @@ public class MarvelHeroRepository {
             return new Result<>(Result.Status.ERROR, null);
         }
     }
-
-    //method remove
 
     //method update
     @NonNull
@@ -61,8 +59,8 @@ public class MarvelHeroRepository {
         }
     }
 
+    //method remove
     public Result<Boolean> deleteHero(MarvelHero hero) {
-
 
         try {
             Boolean response = marvelHeroLocalDataSource.deleteHero(hero);

@@ -15,20 +15,18 @@ import com.superheroes.app.ui.EditHeroesActivity;
 import com.superheroes.app.ui.ListLicenseActivity;
 import com.superheroes.app.ui.MapHeroesFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListHeroesPresenter  {
+public class MapHeroesPresenter {
 
-    private ListHeroesViewTranslator mView;
+    private MapHeroesViewTranslator mView;
     private TaskRunner mTaskRunner = new TaskRunner();
-    private MarvelHero currentHeroSelected;
 
-    public ListHeroesPresenter(ListHeroesViewTranslator view, Boolean isFirstTime) {
+
+    public MapHeroesPresenter(MapHeroesViewTranslator view, Boolean isFirstTime) {
         mView = view;
         mView.showProgress();
         downloadData(!isFirstTime);
-
     }
 
     public void downloadData(Boolean isLocal) {
@@ -45,40 +43,4 @@ public class ListHeroesPresenter  {
         });
     }
 
-
-    public void onResume() {
-        if(currentHeroSelected != null) {
-            downloadData(true);
-            currentHeroSelected = null;
-        }
-    }
-
-    public void onMarvelHeroClick(Context context, MarvelHero marvelHero) {
-        currentHeroSelected = marvelHero;
-        DetailHeroesActivity.start(context, marvelHero);
-    }
-
-    public void onMarvelHeroLongClick(View v, MarvelHero marvelHero) {
-        currentHeroSelected = marvelHero;
-        mView.openEditDialog(v);
-    }
-
-    public void onMenuClicked(Context context, Boolean isUpdate) {
-        EditHeroesActivity.start(context, currentHeroSelected, isUpdate);
-    }
-
-    public void onMenuUpdateClicked() {
-
-        downloadData(false);
-    }
-
-    public void onMenuAboutClicked(Context context) {
-
-        ListLicenseActivity.start(context);
-    }
-
-    public void onMenuMapsClicked(Context context) {
-
-        MapHeroesFragment.start(context);
-    }
 }

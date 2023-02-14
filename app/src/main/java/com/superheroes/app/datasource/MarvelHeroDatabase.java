@@ -16,6 +16,8 @@ public class MarvelHeroDatabase   {
     private String power;
     private String intelligence;
     private String groups;
+    private double  latitude;
+    private double longitude;
 
     public int getId() {
         return id;
@@ -79,5 +81,21 @@ public class MarvelHeroDatabase   {
 
     public void setGroups(String groups) {
         this.groups = groups;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

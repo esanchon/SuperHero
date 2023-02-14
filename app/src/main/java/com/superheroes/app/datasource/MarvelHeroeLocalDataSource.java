@@ -7,7 +7,6 @@ import com.superheroes.app.domain.models.MarvelHero;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MarvelHeroeLocalDataSource {
 
@@ -32,12 +31,15 @@ public class MarvelHeroeLocalDataSource {
             marvelHero.setPower(hero.getPower());
             marvelHero.setIntelligence(hero.getIntelligence());
             marvelHero.setGroups(hero.getIntelligence());
+            marvelHero.setLatitude(hero.getLatitude());
+            marvelHero.setLongitude(hero.getLongitude());
+
             marvelHeroesDatabase.add(marvelHero);
         }
         heroesDao.insertAll(marvelHeroesDatabase);
     }
 
-       public List<MarvelHero> getAllHereoes() throws Exception {
+       public List<MarvelHero> getAllHeroes() throws Exception {
            HeroesDao heroesDao = db.heroesDao();
 
            List<MarvelHero> marvelHeroes = new ArrayList<>();
@@ -51,6 +53,8 @@ public class MarvelHeroeLocalDataSource {
                marvelHero.setPower(heroDatabase.getPower());
                marvelHero.setIntelligence(heroDatabase.getIntelligence());
                marvelHero.setGroups(heroDatabase.getIntelligence());
+               marvelHero.setLatitude(heroDatabase.getLatitude());
+               marvelHero.setLongitude(heroDatabase.getLongitude());
                marvelHeroes.add(marvelHero);
            }
             return marvelHeroes;
@@ -70,6 +74,8 @@ public class MarvelHeroeLocalDataSource {
                  marvelHeroDatabase.setPower(hero.getPower());
                  marvelHeroDatabase.setIntelligence(hero.getIntelligence());
                  marvelHeroDatabase.setGroups(hero.getIntelligence());
+                 marvelHeroDatabase.setLatitude(hero.getLatitude());
+                 marvelHeroDatabase.setLongitude(hero.getLongitude());
 
                  heroesDao.update(marvelHeroDatabase);
                  return true;
@@ -91,6 +97,8 @@ public class MarvelHeroeLocalDataSource {
             marvelHeroDatabase.setPower(hero.getPower());
             marvelHeroDatabase.setIntelligence(hero.getIntelligence());
             marvelHeroDatabase.setGroups(hero.getIntelligence());
+            marvelHeroDatabase.setLatitude(hero.getLatitude());
+            marvelHeroDatabase.setLongitude(hero.getLongitude());
 
             heroesDao.delete(marvelHeroDatabase);
             return true;
