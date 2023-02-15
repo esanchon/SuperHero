@@ -4,16 +4,20 @@
 
     <item
         android:id="@+id/update_content"
-        android:title="Actualizar"
+        android:title="@string/top_app_bar_update"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/about_content"
-        android:title="Acerca de"
+        android:title="@string/top_app_bar_about"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/location_content"
-        android:title="Localizar Héroes"/>
+        android:title="@string/top_app_bar_map"/>
+
+    <item
+        android:id="@+id/settings_content"
+        android:title="@string/top_app_bar_settings"/>
 
 </menu>

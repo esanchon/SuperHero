@@ -16,4 +16,17 @@
     <string name="hero_detail_intelligence">"Inteligencia: "</string>
     <string name="hero_detail_groups">"Grupos: "</string>
     <string name="app_bar_detailhero_share">Compartir</string>
+    <string name="top_app_bar_update">Actualizar</string>
+    <string name="top_app_bar_about">Acerca de</string>
+    <string name="top_app_bar_map">Localizar Héroes</string>
+    <string name="top_app_bar_settings">Ajustes</string>
+
+    <!-- Preference Titles -->
+    <string name="system_header">Sistema</string>
+    <string name="hero_header">Héroes</string>
+
+    <!-- Messages Preferences -->
+    <string name="hero_search">Héroe a buscar</string>
+    <string name="hero_signature">Añadir firma al compartir héroe</string>
+
 </resources>

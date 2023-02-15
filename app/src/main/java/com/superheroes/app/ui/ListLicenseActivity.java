@@ -2,28 +2,13 @@ package com.superheroes.app.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.superheroes.app.R;
-import com.superheroes.app.domain.models.MarvelHero;
-import com.superheroes.app.presenter.ListHeroesPresenter;
-import com.superheroes.app.presenter.ListHeroesViewTranslator;
-
-import java.util.List;
 
 public class ListLicenseActivity extends AppCompatActivity {
 

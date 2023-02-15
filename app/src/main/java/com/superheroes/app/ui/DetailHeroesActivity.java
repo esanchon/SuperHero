@@ -2,8 +2,10 @@ package com.superheroes.app.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -13,9 +15,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.superheroes.app.HeroesApplication;
 import com.superheroes.app.R;
 import com.superheroes.app.domain.models.MarvelHero;
 
@@ -25,11 +29,11 @@ public class DetailHeroesActivity extends AppCompatActivity {
 
     private ScrollView mscrollView;
     private ImageView mImageView;
-
     private MarvelHero currentHeroSelected;
-
     Intent intent;
     String detalleHeroe;
+    String signature;
+    private SharedPreferences mSharedPreferences;
 
     public static void start(Context context, MarvelHero marvelHero) {
         Intent intent = new Intent(context, DetailHeroesActivity.class);
@@ -92,11 +96,15 @@ public class DetailHeroesActivity extends AppCompatActivity {
             case R.id.share_content:
                 //TODO create presenter
                 //presenter.onMenuShareClicked();
+
+                mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(HeroesApplication.getAppContext());
+
                 intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 detalleHeroe = getResources().getString(R.string.hero_detail_name) + currentHeroSelected.getName()
-                                +"\n" + getResources().getString(R.string.hero_detail_power) + currentHeroSelected.getPower();
+                                +"\n" + getResources().getString(R.string.hero_detail_power) + currentHeroSelected.getPower()
+                                +"\n" + mSharedPreferences.getString("share_hero_signature","");;
                 intent.putExtra(Intent.EXTRA_TEXT, detalleHeroe);
                 Intent shareIntent = Intent.createChooser(intent, "Compartir héroe");
                 startActivity(shareIntent);

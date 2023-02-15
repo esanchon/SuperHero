@@ -1,0 +1,29 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/system_header">
+
+        <SwitchPreferenceCompat
+            app:key="@string/common_google_play_services_notification_ticker"
+            app:title="Permitir notificaciones" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/hero_header">
+
+        <EditTextPreference
+            app:key="hero_search_key"
+            app:title="@string/hero_search"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="super"/>
+
+        <EditTextPreference
+            app:key="share_hero_signature"
+            app:title="@string/hero_signature"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="héroe propiedad de esanchon"/>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

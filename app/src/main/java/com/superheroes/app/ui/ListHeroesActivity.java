@@ -80,8 +80,9 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
             case R.id.location_content:
                 presenter.onMenuMapsClicked(getApplicationContext());
                 break;
-
-
+            case R.id.settings_content:
+                presenter.onMenuSettingsClicked(getApplicationContext());
+                break;
 
             default:
                 break;
