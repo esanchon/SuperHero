@@ -9,4 +9,11 @@
     <string name="delete">Borrar</string>
     <string name="detail">"Detalle de Superheroe"</string>
     <string name="license">Licencias</string>
+    <string name="hero_detail_name">"Nombre: "</string>
+    <string name="hero_detail_realname">"Nombre real: "</string>
+    <string name="hero_detail_gender">"Género: "</string>
+    <string name="hero_detail_power">"Poder: "</string>
+    <string name="hero_detail_intelligence">"Inteligencia: "</string>
+    <string name="hero_detail_groups">"Grupos: "</string>
+    <string name="app_bar_detailhero_share">Compartir</string>
 </resources>

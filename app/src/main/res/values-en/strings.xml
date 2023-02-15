@@ -10,4 +10,11 @@
     <string name="delete">Delete</string>
     <string name="detail">Detail</string>
     <string name="license">License</string>
+    <string name="hero_detail_name">"Name: "</string>
+    <string name="hero_detail_realname">"Real name: "</string>
+    <string name="hero_detail_gender">"Gender: "</string>
+    <string name="hero_detail_power">"Power: "</string>
+    <string name="hero_detail_intelligence">"Intelligence: "</string>
+    <string name="hero_detail_groups">"Groups: "</string>
+    <string name="app_bar_detailhero_share">Share</string>
 </resources>
