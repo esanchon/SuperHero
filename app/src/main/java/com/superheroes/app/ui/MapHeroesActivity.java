@@ -3,20 +3,18 @@ package com.superheroes.app.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.superheroes.app.databinding.ActivityMapsBinding;
 import com.superheroes.app.R;
@@ -24,12 +22,11 @@ import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.presenter.ListHeroesPresenter;
 import com.superheroes.app.presenter.MapHeroesPresenter;
 import com.superheroes.app.presenter.MapHeroesViewTranslator;
-import com.superheroes.app.repository.MarvelHeroRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapHeroesFragment extends FragmentActivity implements OnMapReadyCallback, MapHeroesViewTranslator {
+public class MapHeroesActivity extends AppCompatActivity implements OnMapReadyCallback, MapHeroesViewTranslator {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -38,7 +35,7 @@ public class MapHeroesFragment extends FragmentActivity implements OnMapReadyCal
     private List<MarvelHero> superHeroes;
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, MapHeroesFragment.class);
+        Intent intent = new Intent(context, MapHeroesActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
@@ -52,6 +49,9 @@ public class MapHeroesFragment extends FragmentActivity implements OnMapReadyCal
         presenter = new MapHeroesPresenter(this, false);
         mEmptyText = findViewById(R.id.tv_empty_list);
         superHeroes = new ArrayList<>();
+
+        getSupportActionBar().setTitle("Ubicación de los Héroes");
+
     }
 
     @Override
@@ -61,8 +61,6 @@ public class MapHeroesFragment extends FragmentActivity implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-
 
 
         for (int i = 0; i < superHeroes.size(); i++) {
@@ -97,5 +95,32 @@ public class MapHeroesFragment extends FragmentActivity implements OnMapReadyCal
     public void showError(int message) {
         mEmptyText.setVisibility(View.VISIBLE);
         mEmptyText.setText(getString(message));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        MenuItem menuItem = menu.findItem(R.id.location_content);
+        menuItem.setVisible(false);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.update_content:
+                presenter.onMenuUpdateClicked();
+                break;
+            case R.id.about_content:
+                presenter.onMenuAboutClicked(getApplicationContext());
+                break;
+            case R.id.settings_content:
+                presenter.onMenuSettingsClicked(getApplicationContext());
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

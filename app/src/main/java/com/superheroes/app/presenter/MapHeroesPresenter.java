@@ -1,21 +1,16 @@
 package com.superheroes.app.presenter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.superheroes.app.R;
 import com.superheroes.app.datasource.MarvelHeroRemoteDataSource;
-import com.superheroes.app.domain.models.MarvelHero;
 import com.superheroes.app.domain.usecases.DownloadHeroesUseCase;
 import com.superheroes.app.domain.usecases.Result;
 import com.superheroes.app.domain.usecases.TaskRunner;
 import com.superheroes.app.repository.MarvelHeroRepository;
-import com.superheroes.app.ui.DetailHeroesActivity;
-import com.superheroes.app.ui.EditHeroesActivity;
 import com.superheroes.app.ui.ListLicenseActivity;
-import com.superheroes.app.ui.MapHeroesFragment;
-
-import java.util.List;
+import com.superheroes.app.ui.MapHeroesActivity;
+import com.superheroes.app.ui.SettingsActivity;
 
 public class MapHeroesPresenter {
 
@@ -43,4 +38,19 @@ public class MapHeroesPresenter {
         });
     }
 
+    public void onMenuUpdateClicked() {
+
+        downloadData(false);
+    }
+
+    public void onMenuAboutClicked(Context context) {
+
+        ListLicenseActivity.start(context);
+    }
+
+    public void onMenuSettingsClicked(Context context) {
+        SettingsActivity.start(context);
+    }
 }
+
+

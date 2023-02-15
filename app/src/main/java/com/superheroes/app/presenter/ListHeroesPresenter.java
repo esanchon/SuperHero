@@ -13,11 +13,8 @@ import com.superheroes.app.repository.MarvelHeroRepository;
 import com.superheroes.app.ui.DetailHeroesActivity;
 import com.superheroes.app.ui.EditHeroesActivity;
 import com.superheroes.app.ui.ListLicenseActivity;
-import com.superheroes.app.ui.MapHeroesFragment;
+import com.superheroes.app.ui.MapHeroesActivity;
 import com.superheroes.app.ui.SettingsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListHeroesPresenter  {
 
@@ -80,7 +77,7 @@ public class ListHeroesPresenter  {
 
     public void onMenuMapsClicked(Context context) {
 
-        MapHeroesFragment.start(context);
+        MapHeroesActivity.start(context);
     }
 
     public void onMenuSettingsClicked(Context context) {
