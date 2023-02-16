@@ -28,5 +28,6 @@
     <!-- Messages Preferences -->
     <string name="hero_search">Héroe a buscar</string>
     <string name="hero_signature">Añadir firma al compartir héroe</string>
+    <string name="download_ok">Descarga completada</string>
 
 </resources>

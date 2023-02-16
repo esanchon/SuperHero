@@ -17,4 +17,6 @@ public interface ListHeroesViewTranslator {
     void showError(int message);
 
     void openEditDialog(View v);
+
+    void sendNotification(int message);
 }

@@ -1,11 +1,18 @@
 package com.superheroes.app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.Manifest;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +30,7 @@ import com.superheroes.app.presenter.ListHeroesPresenter;
 import com.superheroes.app.presenter.ListHeroesViewTranslator;
 
 import java.util.List;
+import java.util.function.ToDoubleBiFunction;
 
 public class ListHeroesActivity extends AppCompatActivity implements ListHeroesViewTranslator {
 
@@ -70,7 +78,7 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.update_content:
                 presenter.onMenuUpdateClicked();
                 break;
@@ -121,10 +129,15 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                presenter.onMenuClicked(getApplicationContext(),R.id.add== item.getItemId());
+                presenter.onMenuClicked(getApplicationContext(), R.id.add == item.getItemId());
                 return true;
             }
         });
         popup.show();//showing popup menu// show popup like dropdown list
+    }
+
+    @Override
+    public void sendNotification(int message) {
+        //TODO: create a notification channel
     }
 }
