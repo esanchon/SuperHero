@@ -37,7 +37,6 @@ public class ListHeroesPresenter  {
             mView.hideProgress();
             if (result.status() == Result.Status.OK) {
                 mView.loadData(result.data());
-                mView.sendNotification(R.string.download_ok);
             } else {
                 mView.showError(R.string.error_download_data);
             }
@@ -64,11 +63,13 @@ public class ListHeroesPresenter  {
 
     public void onMenuClicked(Context context, Boolean isUpdate) {
         EditHeroesActivity.start(context, currentHeroSelected, isUpdate);
+
     }
 
     public void onMenuUpdateClicked() {
 
         downloadData(false);
+        mView.sendNotification(R.string.download_ok);
     }
 
     public void onMenuAboutClicked(Context context) {
