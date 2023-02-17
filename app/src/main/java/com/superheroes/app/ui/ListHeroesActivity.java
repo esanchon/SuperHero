@@ -4,15 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.superheroes.app.HeroesApplication;
 import com.superheroes.app.R;
 import com.superheroes.app.datasource.AppDatabase;
 import com.superheroes.app.domain.models.MarvelHero;
@@ -40,6 +47,8 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView mEmptyText;
     private ProgressBar mLoader;
+    private SharedPreferences mSharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +147,36 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
 
     @Override
     public void sendNotification(int message) {
-        //TODO: create a notification channel
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(HeroesApplication.getAppContext());
+
+        if (mSharedPreferences.getBoolean("notifications_enabled",false)) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+
+            String CHANNEL_ID = "SUPERHERO_CHANNEL";
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "SUPERHERO_CHANNEL", NotificationManager.IMPORTANCE_HIGH);
+                notificationManager.createNotificationChannel(channel);
+            }
+
+            Intent intent = new Intent(getApplicationContext(), ListHeroesActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_launcher_super_background)
+                    .setContentTitle("SuperHeroes")
+                    .setContentText("Descargados " + mAdapter.getItemCount() + " superhéroes")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
+
+            notificationManager.notify(0, builder.build());
+        }
+
     }
 }
+

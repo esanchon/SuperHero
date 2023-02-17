@@ -4,7 +4,8 @@
     <PreferenceCategory app:title="@string/system_header">
 
         <SwitchPreferenceCompat
-            app:key="@string/common_google_play_services_notification_ticker"
+            app:key="notifications_enabled"
+            android:defaultValue="true"
             app:title="Permitir notificaciones" />
 
     </PreferenceCategory>
