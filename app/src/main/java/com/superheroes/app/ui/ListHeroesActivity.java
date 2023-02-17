@@ -169,8 +169,8 @@ public class ListHeroesActivity extends AppCompatActivity implements ListHeroesV
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_launcher_super_background)
-                    .setContentTitle("SuperHeroes")
-                    .setContentText("Descargados " + mAdapter.getItemCount() + " superhéroes")
+                    .setContentTitle(getString(R.string.SuperHeroes))
+                    .setContentText(getString(R.string.Downloaded_heroes) + mAdapter.getItemCount() + getString(R.string.space_superheroes))
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true);
 

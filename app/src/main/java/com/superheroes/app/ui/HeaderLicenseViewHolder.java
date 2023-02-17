@@ -20,7 +20,7 @@ public class HeaderLicenseViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void render() {
-        licensetitle.setText("En esta sección se muestran las librerías utilizadas en la aplicación");
+        licensetitle.setText(R.string.seccion_librerias);
         licensetitle.setTextSize(17);
         licensetitle.setTextColor(Color.parseColor("#987654"));
     }

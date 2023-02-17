@@ -50,7 +50,7 @@ public class MapHeroesActivity extends AppCompatActivity implements OnMapReadyCa
         mEmptyText = findViewById(R.id.tv_empty_list);
         superHeroes = new ArrayList<>();
 
-        getSupportActionBar().setTitle("Ubicación de los Héroes");
+        getSupportActionBar().setTitle(R.string.ubicacion_heroes);
 
     }
 

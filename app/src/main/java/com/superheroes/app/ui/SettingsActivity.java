@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
                     .commit();
         }
 
-        getSupportActionBar().setTitle("Ajustes");
+        getSupportActionBar().setTitle(R.string.Settings);
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

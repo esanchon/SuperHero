@@ -80,7 +80,7 @@ public class EditHeroesActivity extends AppCompatActivity implements EditHeroesV
             }
         });
         edit_name = findViewById(R.id.edit_name);
-        edit_name.setText("Nombre: "+currentHeroSelected.getName());
+        edit_name.setText(getString(R.string.Name)+currentHeroSelected.getName());
         if(!isUpdate){
             edit_name.setEnabled(false);
         }

@@ -29,5 +29,13 @@
     <string name="hero_search">Héroe a buscar</string>
     <string name="hero_signature">Añadir firma al compartir héroe</string>
     <string name="download_ok">Descarga completada</string>
+    <string name="share_hero">Compartir héroe</string>
+    <string name="Name">\"Nombre: \"</string>
+    <string name="seccion_librerias">En esta sección se muestran las librerías utilizadas en la aplicación</string>
+    <string name="SuperHeroes">SuperHeroes</string>
+    <string name="Downloaded_heroes">\"Descargados \"</string>
+    <string name="space_superheroes">\" superhéroes\"</string>
+    <string name="ubicacion_heroes">Ubicación de los Héroes</string>
+    <string name="Settings">Ajustes</string>
 
 </resources>

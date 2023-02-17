@@ -106,7 +106,7 @@ public class DetailHeroesActivity extends AppCompatActivity {
                                 +"\n" + getResources().getString(R.string.hero_detail_power) + currentHeroSelected.getPower()
                                 +"\n" + mSharedPreferences.getString("share_hero_signature","");;
                 intent.putExtra(Intent.EXTRA_TEXT, detalleHeroe);
-                Intent shareIntent = Intent.createChooser(intent, "Compartir héroe");
+                Intent shareIntent = Intent.createChooser(intent, getString(R.string.share_hero));
                 startActivity(shareIntent);
 
                 break;
